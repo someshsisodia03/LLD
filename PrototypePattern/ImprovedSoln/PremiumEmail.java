@@ -12,6 +12,10 @@ class PremiumEmail extends Email {
         this.cc = email.cc;
         this.bcc = email.bcc;
     }
+    @Override
+    public PremiumEmail copy() {
+        return new PremiumEmail(this);
+    }
     public String getcc() {
         return cc;
     }

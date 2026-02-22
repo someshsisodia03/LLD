@@ -1,5 +1,5 @@
 package LLD.PrototypePattern.ImprovedSoln;
-class Email {
+class Email implements copyable<Email> {
     private String sender;
     private String reciever;
     private String subject;
@@ -16,6 +16,10 @@ class Email {
         this.subject = email.subject;
         this.body = email.body;
     }
+    @Override
+    public Email copy(){
+        return new Email(this);
+    }    
     public String getSender() {
         return sender;
     }
@@ -39,5 +43,11 @@ class Email {
     }
     public void setBody(String body) {
         this.body = body;
+    }
+    public void displayEmail() {
+        System.out.println("Sender: " + sender);
+        System.out.println("Reciever: " + reciever);
+        System.out.println("Subject: " + subject);
+        System.out.println("Body: " + body);
     }
 }
