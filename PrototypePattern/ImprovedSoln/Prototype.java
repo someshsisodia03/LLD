@@ -1,4 +1,4 @@
 package LLD.PrototypePattern.ImprovedSoln;
-public interface copyable<T> {
+public interface Prototype<T> {
     T copy();
 }

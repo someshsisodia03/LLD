@@ -1,5 +1,5 @@
 package LLD.PrototypePattern.ImprovedSoln;
-class Email implements copyable<Email> {
+class Email implements Prototype<Email> {
     private String sender;
     private String reciever;
     private String subject;
