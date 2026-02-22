@@ -1,4 +1,4 @@
-package LLDPrototypePattern.NaiveSoln;
+package LLD.PrototypePattern.NaiveSoln;
 public class Driver {
     public static void main(String[] args) {
         Email email1 = new Email("sender@example.com", "receiver@example.com", "Subject", "Body");
