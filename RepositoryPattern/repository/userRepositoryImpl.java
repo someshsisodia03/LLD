@@ -11,7 +11,7 @@ public class userRepositoryImpl implements UserRepository {
     @Override
     public List<String> getUser(int limit,int offset){
         List<String>users = db.getUser();
-        int start = offset+1;
+        int start = offset;
         int end = Math.min(start+limit, users.size());
         if(start>=users.size()) return List.of();
         
