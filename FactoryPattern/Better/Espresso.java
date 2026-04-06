@@ -1,6 +1,6 @@
 package LLD.FactoryPattern.Better;
 
-public class Espresso implements Coffee{
+public class Espresso extends Coffee{
     @Override
     public void boil(){
         System.out.println("Espresso is boiling");

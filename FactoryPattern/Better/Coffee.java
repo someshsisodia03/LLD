@@ -1,7 +1,10 @@
 package LLD.FactoryPattern.Better;
 
-public interface Coffee {
-    void boil();
-    void freeze();
-    void brew();
+public abstract class Coffee {
+    Milk milk;
+    Sugar sugar;
+    IngredientFactory icf;
+    abstract void boil();
+    abstract void freeze();
+    abstract void brew();
 }

@@ -1,12 +1,16 @@
 package LLD.FactoryPattern.Better;
 
 public class CoffeeFactory{
-    Coffee prepare(String whichCoffee){
-        Coffee coffee;
+    Coffee coffee;
+    IngredientFactory icf;
+
+    Coffee prepare(String whichCoffee,Milk whichMilk,Sugar whichSugar){
+
         if(whichCoffee.equals("Latte")){
-            coffee=new Latte();
+            icf = new LatteIngredient(whichMilk,whichSugar);
+            coffee=new Latte(icf);
         }
-        if(whichCoffee.equals("Espresso")){
+        else if(whichCoffee.equals("Espresso")){
             coffee=new Espresso();
         }
         else{
