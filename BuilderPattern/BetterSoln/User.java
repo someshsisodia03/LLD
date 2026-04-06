@@ -33,19 +33,6 @@ public class User {
         public User build() {
             return new User(this);
         }
-    
-        // Getters
-        public String getName() {
-            return name;
-        }
-    
-        public int getAge() {
-            return age;
-        }
-    
-        public String getEmail() {
-            return email;
-        }
     }
     // Getters
     public String getName() {

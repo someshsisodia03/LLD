@@ -25,6 +25,15 @@ class HttpRequest {
             return this;
         }
         public Builder Url(String url){
+            try {
+                URI uri = new URI(url);
+                if(uri.isAbsolute() == false){
+                    throw new IllegalArgumentException("URL must be absolute: " + url);
+                }
+                
+            } catch (Exception e) {
+                System.out.println("Invalid URL: " + url);
+            }
             this.url = url;
             return this;
         }
@@ -40,15 +49,6 @@ class HttpRequest {
             List<String> validMethods = List.of("GET", "POST", "PUT", "DELETE", "PATCH");
             if (method == null || !validMethods.contains(method.toUpperCase())) {
                 throw new IllegalArgumentException("Invalid HTTP method: " + method);
-            }
-            try {
-                URI uri = new URI(url);
-                if(uri.isAbsolute() == false){
-                    throw new IllegalArgumentException("URL must be absolute: " + url);
-                }
-                
-            } catch (Exception e) {
-                System.out.println("Invalid URL: " + url);
             }
             try {
                 if(method.equals("GET") && body!=null){
