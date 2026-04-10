@@ -1,0 +1,8 @@
+package LLD.ATM.Better.Enums;
+public enum ATMState {
+    READY_FOR_TRANSACTION,
+    READ_CARD_AND_PIN_DETAILS,
+    READ_CASH_WITHDRAWAL_DETAILS,
+    DISPENSE_CASH,
+    EJECT_CARD
+}
