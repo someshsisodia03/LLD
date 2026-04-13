@@ -1,6 +1,7 @@
 package LLD.ATM.Better.apis;
-
-
+import LLD.ATM.Better.DTO.*;
 public interface backendApi {
-    int getTransactionId(String atmId);
+    int getTransactionId(createTransactionDTO createTransactionDTO);
+    boolean updateState(updateTransactionDTO updateTransactionDTO);
+    boolean validateCardDetails(validateCardDetailsDTO validateCardDetailsDTO);
 }

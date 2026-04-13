@@ -1,21 +1,29 @@
 package LLD.ATM.Better.states;
+import LLD.ATM.Better.DTO.createTransactionDTO;
 import LLD.ATM.Better.Enums.ATMState;
+import LLD.ATM.Better.Services.CardManagerService;
 import LLD.ATM.Better.apis.backendApi;
 import LLD.ATM.Better.models.ATM;
 import LLD.ATM.Better.models.Card;
 
-public class ReadyForTransaction implements State{
+public class ReadyForTransactionState implements State{
     private final ATM atm;
     private final backendApi backendApi;
+    private final CardManagerService cardManagerService;
 
-    ReadyForTransaction(ATM atm, backendApi backendApi) {
+    public ReadyForTransactionState(ATM atm, backendApi backendApi, CardManagerService cardManagerService) {
         this.atm = atm;
         this.backendApi = backendApi;
+        this.cardManagerService = cardManagerService;
     }
 
     @Override
     public int initTransaction() {
-        int transactionId = backendApi.getTransactionId(atm.getAtmId());
+        int transactionId = backendApi.getTransactionId(new createTransactionDTO(atm.getAtmId()));
+        if(transactionId <= 0) {
+            throw new IllegalStateException("Failed to initiate transaction. Invalid transaction ID received from backend.");
+        }
+        atm.updateState(new ReadCardAndPinDetailsState(this.atm, this.backendApi, this.cardManagerService));
         return transactionId;
     }
 
