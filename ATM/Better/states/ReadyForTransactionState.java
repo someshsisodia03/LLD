@@ -9,12 +9,10 @@ import LLD.ATM.Better.models.Card;
 public class ReadyForTransactionState implements State{
     private final ATM atm;
     private final backendApi backendApi;
-    private final CardManagerService cardManagerService;
 
-    public ReadyForTransactionState(ATM atm, backendApi backendApi, CardManagerService cardManagerService) {
+    public ReadyForTransactionState(ATM atm, backendApi backendApi) {
         this.atm = atm;
         this.backendApi = backendApi;
-        this.cardManagerService = cardManagerService;
     }
 
     @Override
@@ -23,7 +21,7 @@ public class ReadyForTransactionState implements State{
         if(transactionId <= 0) {
             throw new IllegalStateException("Failed to initiate transaction. Invalid transaction ID received from backend.");
         }
-        atm.updateState(new ReadCardAndPinDetailsState(this.atm, this.backendApi, this.cardManagerService));
+        atm.updateState(new ReadCardAndPinDetailsState(this.atm, this.backendApi));
         return transactionId;
     }
 

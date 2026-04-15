@@ -1,7 +1,7 @@
 package LLD.ATM.Better.Services;
 public class CreditCardManagerService implements CardManagerService{
     @Override
-    public boolean validateCardDetails(String cardNumber, String pin, int atmId) {
+    public boolean validateCardDetails(String cardNumber, String pin, String atmId) {
         return true;
     }
 

@@ -1,5 +1,8 @@
 package LLD.ATM.Better.models;
 import LLD.ATM.Better.Enums.CardType;
+import LLD.ATM.Better.Factory.CardProperty;
+import LLD.ATM.Better.Services.CardManagerService;
+import LLD.ATM.Better.apis.backendApi;
 public class Card {
     private final String cardNumber;
     private final String pin;
@@ -30,5 +33,8 @@ public class Card {
     }
     public String getBankName() {
         return bankName;
+    }
+    public CardManagerService getCardManagerService(backendApi backendApi) {
+        return new CardProperty(backendApi).getCardManagerService(this);
     }
 }

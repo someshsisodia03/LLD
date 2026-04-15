@@ -7,12 +7,10 @@ public class ATM {
     private final String atmId;
     private State state;
     private final backendApi backendApi;
-    private final CardManagerService cardManagerService;
-    public ATM(String atmId,CardManagerService cardManagerService) {
+    public ATM(String atmId) {
         this.atmId = atmId;
         this.backendApi = new NodeBackend();
-        this.cardManagerService = cardManagerService;
-        state = new ReadyForTransactionState(this, backendApi, cardManagerService);
+        state = new ReadyForTransactionState(this, backendApi);
     }
     public String getAtmId() {
         return atmId;

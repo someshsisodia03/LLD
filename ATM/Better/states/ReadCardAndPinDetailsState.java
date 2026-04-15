@@ -3,18 +3,15 @@ import LLD.ATM.Better.Enums.ATMState;
 import LLD.ATM.Better.apis.*;
 import LLD.ATM.Better.models.ATM;
 import LLD.ATM.Better.models.Card;
-import LLD.ATM.Better.Services.CardManagerService;
 
 
 public class ReadCardAndPinDetailsState implements State{
-    private ATM atm;
-    private backendApi backendApi;
-    CardManagerService cardManagerService;
+    private final ATM atm;
+    private final backendApi backendApi;
 
-    public ReadCardAndPinDetailsState(ATM atm, backendApi backendApi, CardManagerService cardManagerService) {
+    public ReadCardAndPinDetailsState(ATM atm, backendApi backendApi) {
         this.atm = atm;
         this.backendApi = backendApi;
-        this.cardManagerService = cardManagerService;
     }
     @Override
     public int initTransaction() {
@@ -23,7 +20,7 @@ public class ReadCardAndPinDetailsState implements State{
 
     @Override
     public boolean readCardAndPinDetails(Card card) {
-        boolean isValid = cardManagerService.validateCardDetails(card.getCardNumber(), card.getPin(), atm.getAtmId());
+        boolean isValid = card.getCardManagerService(backendApi).validateCardDetails(card.getCardNumber(), card.getPin(), atm.getAtmId());
         atm.updateState(new ReadCashWithdrawalDetailsState());
         return true;
 

@@ -1,8 +1,8 @@
 package LLD.ATM.Better.DTO;
 public class validateCardDetailsDTO {
-    private String atmId;
-    private String cardNumber;
-    private String pin;
+    private final String atmId;
+    private final String cardNumber;
+    private final String pin;
 
     public validateCardDetailsDTO(String atmId, String cardNumber, String pin) {
         this.atmId = atmId;
