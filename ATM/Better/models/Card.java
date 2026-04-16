@@ -35,6 +35,6 @@ public class Card {
         return bankName;
     }
     public CardManagerService getCardManagerService(backendApi backendApi) {
-        return new CardProperty(backendApi).getCardManagerService(this);
+        return new CardProperty(backendApi).getCardManagerService(cardType);
     }
 }

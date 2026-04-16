@@ -1,6 +1,5 @@
 package LLD.ATM.Better.models;
 import LLD.ATM.Better.DTO.*;
-import LLD.ATM.Better.Services.CardManagerService;
 import LLD.ATM.Better.apis.*;
 import LLD.ATM.Better.states.*;
 public class ATM {
@@ -21,5 +20,5 @@ public class ATM {
     public void updateState(State state) {
         this.state = state;
         backendApi.updateState(new updateTransactionDTO(atmId, state.getStatus()));
-    }
+    }                                               
 }

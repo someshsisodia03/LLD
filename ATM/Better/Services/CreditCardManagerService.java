@@ -1,17 +1,18 @@
 package LLD.ATM.Better.Services;
+import LLD.ATM.Better.models.*;
 public class CreditCardManagerService implements CardManagerService{
     @Override
-    public boolean validateCardDetails(String cardNumber, String pin, String atmId) {
+    public boolean validateCardDetails(String cardNumber, String pin, String atmId,int Pin) {
         return true;
     }
 
     @Override
-    public boolean validateCardWithdrawalDetails(int transactionId, int amount) {
+    public boolean validateCashWithdrawalDetails(int transactionId, int amount) {
         return true;
     }
 
     @Override
-    public boolean doDispenseCash(int transactionId) {
+    public boolean doTransaction(Card card,int transactionId,int amount) {
         return true;
     }
 }

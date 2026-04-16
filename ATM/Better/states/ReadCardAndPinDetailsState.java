@@ -1,8 +1,8 @@
 package LLD.ATM.Better.states;
+import LLD.ATM.Better.DTO.*;
 import LLD.ATM.Better.Enums.ATMState;
 import LLD.ATM.Better.apis.*;
-import LLD.ATM.Better.models.ATM;
-import LLD.ATM.Better.models.Card;
+import LLD.ATM.Better.models.*;
 
 
 public class ReadCardAndPinDetailsState implements State{
@@ -19,21 +19,32 @@ public class ReadCardAndPinDetailsState implements State{
     }
 
     @Override
-    public boolean readCardAndPinDetails(Card card) {
-        boolean isValid = card.getCardManagerService(backendApi).validateCardDetails(card.getCardNumber(), card.getPin(), atm.getAtmId());
-        atm.updateState(new ReadCashWithdrawalDetailsState());
-        return true;
+    public boolean readCardAndPinDetails(Card card,int Pin) {
+        boolean isValid = card.getCardManagerService(backendApi).validateCardDetails(card.getCardNumber(), card.getPin(), atm.getAtmId(),Pin);
+        if(isValid) {
+            atm.updateState(new ReadCashWithdrawalDetailsState(atm, backendApi));
+        }
+        else {
+            atm.updateState(new EjectingCardState(atm, backendApi));
+        }
+        return isValid;
 
     }
 
     @Override
-    public boolean readCashWithdrawalDetails(int transactionId, int amount) {
+    public boolean readCashWithdrawalDetails(int transactionId, int amount,Card card) {
         throw new IllegalStateException("Cannot read cash withdrawal details while reading card and pin details");
     }
 
     @Override
-    public int dispenseCash(int transactionId) {
+    public int dispenseCash(Card card,int transactionId,int amount) {
         throw new IllegalStateException("Cannot dispense cash while reading card and pin details");
+    }
+
+    @Override
+    public boolean cancelTransaction(int transactionId) {
+        atm.updateState(new ReadyForTransactionState(atm, backendApi));
+        return backendApi.cancelTransaction(new cancelTransactionDTO(atm.getAtmId(), transactionId));        
     }
 
     @Override

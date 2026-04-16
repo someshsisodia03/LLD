@@ -10,6 +10,11 @@ public class updateTransactionDTO {
         this.atm = atm;
         this.status = status;
     }
+    public String getAtm() {
+        return atm;
+    }   
+    public ATMState getStatus() {
+        return status;
+    }
 
-    
 }

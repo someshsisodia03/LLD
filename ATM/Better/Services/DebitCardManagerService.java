@@ -1,7 +1,7 @@
 package LLD.ATM.Better.Services;
-
-import LLD.ATM.Better.DTO.validateCardDetailsDTO;
+import LLD.ATM.Better.DTO.*;
 import LLD.ATM.Better.apis.backendApi;
+import LLD.ATM.Better.models.*;
 
 
 public class DebitCardManagerService implements CardManagerService{
@@ -10,17 +10,17 @@ public class DebitCardManagerService implements CardManagerService{
         this.backendApi = backendApi;
     }
     @Override
-    public boolean validateCardDetails(String cardNumber, String pin, String atmId) {
-        return backendApi.validateCardDetails(new validateCardDetailsDTO(atmId, cardNumber, pin));
+    public boolean validateCardDetails(String cardNumber, String pin, String atmId,int Pin) {
+        return backendApi.validateCardDetails(new validateCardDetailsDTO(atmId, cardNumber, pin,Pin));
     }
 
     @Override
-    public boolean validateCardWithdrawalDetails(int transactionId, int amount) {
-        return true;
+    public boolean validateCashWithdrawalDetails(int transactionId, int amount) {
+        return backendApi.validateCashWithdrawalDetails(new validateCashWithdrawalDetailsDTO(transactionId, amount));
     }
 
     @Override
-    public boolean doDispenseCash(int transactionId) {
+    public boolean doTransaction(Card card,int transactionId,int amount) {
         return true;
     }
 }

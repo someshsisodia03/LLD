@@ -27,4 +27,16 @@ public class NodeBackend implements backendApi {
         // }
         return true;
     }
+    @Override
+    public boolean cancelTransaction(cancelTransactionDTO cancelTransactionDTO) {
+        return true;
+    }
+    @Override
+    public boolean validateCashWithdrawalDetails(validateCashWithdrawalDetailsDTO validateCashWithdrawalDetailsDTO) {
+        return true;
+    }
+    @Override
+    public int getATMamount(getATMAmountDTO getATMAmountDTO) {
+        return 100000;
+    }
 }
