@@ -19,6 +19,7 @@ public class ATM {
     }
     public void updateState(State state) {
         this.state = state;
+        System.out.println("ATM " + atmId + " updated state to: " + state.getStatus());
         backendApi.updateState(new updateTransactionDTO(atmId, state.getStatus()));
     }                                               
 }
