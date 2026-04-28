@@ -22,7 +22,7 @@ public class Itinerary{
         this.origin = builder.origin;
         this.destination = builder.destination;
         //Optional
-        this.segments = new ArrayList<>(builder.segments);
+        this.segments = new ArrayList<>(builder.segments); //deep copy to ensure immutability
         // this.tags = builder.tags;
         this.amount = builder.amount;
         this.travelInsurance = builder.travelInsurance;
